@@ -37,3 +37,9 @@
   entry: hooks/nixpkgs-fmt.py
   types_or: [ nix ]
   args: [ --apply-fixes ]
+-
+  id: shellcheck
+  name: Check the syntax of commited shell scripts
+  language: python
+  entry: hooks/shell-check.py
+  types_or: [ shell ]
