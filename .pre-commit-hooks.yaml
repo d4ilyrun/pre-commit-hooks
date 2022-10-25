@@ -11,3 +11,16 @@
   entry: hooks/clang-format.py
   types_or: [ c, c++, c#, objective-c, java ]
   args: [ --apply-fixes ]
+-
+  id: check-nixpkgs-fmt
+  name: Check that all Nix files are formatted correctly
+  language: python
+  entry: hooks/nixpkgs-fmt.py
+  types_or: [ nix ]
+-
+  id: apply-nixpkgs-fmt
+  name: Format all Nix files correctly
+  language: python
+  entry: hooks/nixpkgs-fmt.py
+  types_or: [ nix ]
+  args: [ --apply-fixes ]

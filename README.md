@@ -20,7 +20,7 @@ repos:
     rev: master
     hooks:
       - id: check-clang-format
-      - id: apply-clang-format
+      - id: apply-nixpkgs-fmt
 ```
 
 Then run `pre-commit install --install-hooks`.
@@ -38,10 +38,12 @@ It should apply the selected checks before commiting when new corresponding file
 | ------------------------------------------------------------------------ | -------------------- | ------------------------------------- | ----------------------------------- |
 | [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html) | Formatter            | C, C++, ObjC, ObjC++, Java            | --verbose, --apply-fixes            |
 | [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)                   | Static code analyzer | C, C++, ObjC                          | --verbose, --apply-fixes            |
+| [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt)              | Formatter            | Nix                                   | --verbose, --apply-fixes            |
 
 ### Available pre-commit hooks
 
 | Hook Name                                                                | Available for pre-commit               |
 | ------------------------------------------------------------------------ | -------------------------------------- |
 | [clang-format](https://clang.llvm.org/docs/ClangFormatStyleOptions.html) | check-clang-format, apply-clang-format |
-| [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)                   | check-clang-tidy, apply-clang-tidy     |
+| [clang-tidy](https://clang.llvm.org/extra/clang-tidy/)                   | check-clang-tidy,   apply-clang-tidy   |
+| [nixpkgs-fmt](https://github.com/nix-community/nixpkgs-fmt)              | check-nixpkgs-fmt,  apply-nixpkgs-fmt  |
