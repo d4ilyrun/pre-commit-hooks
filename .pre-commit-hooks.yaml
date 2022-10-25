@@ -2,44 +2,44 @@
   id: check-clang-format
   name: Check that all source files follow the clang-format configuration
   language: python
-  entry: hooks/clang-format.py
+  entry: clang-format-hook
   types_or: [ c, c++, c#, objective-c, java ]
 -
   id: apply-clang-tidy
   name: Apply clang-tidy configuration to source files
   language: python
-  entry: hooks/clang-tidy.py
+  entry: clang-format-hook
   types_or: [ c, c++, c#, objective-c, java ]
   args: [ --apply-fixes ]
 -
   id: check-clang-tidy
   name: Check that all source files follow the clang-tidy configuration
   language: python
-  entry: hooks/clang-tidy.py
+  entry: clang-tidy-hook
   types_or: [ c, c++, c#, objective-c, java ]
 -
   id: apply-clang-format
   name: Apply clang-format configuration to source files
   language: python
-  entry: hooks/clang-format.py
+  entry: clang-tidy-hook
   types_or: [ c, c++, c#, objective-c, java ]
   args: [ --apply-fixes ]
 -
   id: check-nixpkgs-fmt
   name: Check that all Nix files are formatted correctly
   language: python
-  entry: hooks/nixpkgs-fmt.py
+  entry: nixpkgs-fmt-hook
   types_or: [ nix ]
 -
   id: apply-nixpkgs-fmt
   name: Format all Nix files correctly
   language: python
-  entry: hooks/nixpkgs-fmt.py
+  entry: nixpkgs-fmt-hook
   types_or: [ nix ]
   args: [ --apply-fixes ]
 -
   id: shellcheck
   name: Check the syntax of commited shell scripts
   language: python
-  entry: hooks/shell-check.py
+  entry: shell-check-hook
   types_or: [ shell ]
