@@ -1,0 +1,13 @@
+-
+  id: check-clang-format
+  name: Check that all source files follow the clang-format configuration
+  language: python
+  entry: hooks/clang-format.py
+  types_or: [ c, c++, c#, objective-c, java ]
+-
+  id: apply-clang-format
+  name: Apply clang-format configuration to source files
+  language: python
+  entry: hooks/clang-format.py
+  types_or: [ c, c++, c#, objective-c, java ]
+  args: [ --apply-fixes ]
