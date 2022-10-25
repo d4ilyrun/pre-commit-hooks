@@ -1,0 +1,7 @@
+# PYTHON
+__pycache__
+build
+
+# C/C++
+.clang-format
+.clang-tidy

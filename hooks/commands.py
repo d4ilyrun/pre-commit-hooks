@@ -16,7 +16,7 @@ class Command:
         self.arg_parser = arg_parser
         self.args = None
         self.verbose = False
-        self.sucess = True
+        self.return_code = 0
 
     def check_installed(self):
         """ Ensure that a command is installed """
@@ -44,7 +44,7 @@ class SyntaxAnalyzer(Command):
         """ Wether to apply fixes whenever possible """
         self.fix = flag
 
-    def __call__(self, files: List[str], args: List[str]) -> bool:
+    def __call__(self, files: List[str], args: List[str]) -> int:
         """
             Run the command on the list of files with the given arguments.
             Return wether it was successful
@@ -63,8 +63,8 @@ class SyntaxAnalyzer(Command):
                 Error(cmd.returncode, "{}: invalid syntax".format(file)).show()
                 if self.verbose:
                     sys.stderr.write(cmd.stderr.decode('utf-8'))
-                self.sucess = False
-        return self.sucess
+                self.return_code = cmd.returncode
+        return self.return_code
 
 
 class FormattingCommand(Command):
@@ -74,7 +74,7 @@ class FormattingCommand(Command):
         self.fix = None
         self.diff = False
 
-    def __call__(self, files: List[str], args: List[str]) -> bool:
+    def __call__(self, files: List[str], args: List[str]) -> int:
         """
             Run the command on the list of files with the given arguments.
             Return wether it was successful
@@ -105,8 +105,8 @@ class FormattingCommand(Command):
                 Error(cmd.returncode, "{}: wrong format".format(file)).show()
                 if self.verbose:
                     sys.stderr.write(cmd.stderr.decode('utf-8'))
-                self.sucess = False
-        return self.sucess
+                self.return_code = cmd.returncode
+        return self.return_code
 
     def apply_fixes(self, flag: str):
         """ Wether to apply fixes whenever possible """

@@ -44,5 +44,4 @@ def main(argv: List[str] = sys.argv) -> bool:
 
 
 if __name__ == "__main__":
-    if not main():
-        sys.exit(1)
+    sys.exit(main())
