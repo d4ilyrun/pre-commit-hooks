@@ -16,6 +16,7 @@ class Command:
         self.arg_parser = arg_parser
         self.args = None
         self.verbose = False
+        self.sucess = True
 
     def check_installed(self):
         """ Ensure that a command is installed """
@@ -32,13 +33,45 @@ class Command:
         self.verbose = verbose
 
 
-class FormattingCommand(Command):
+class SyntaxAnalyzer(Command):
+    """ Commands responsible for analyzing a syntax (clang-tidy, ...) """
 
+    def __init__(self, command: str, arg_parser: ArgumentParser) -> None:
+        super().__init__(command, arg_parser)
+        self.fix = None
+
+    def apply_fixes(self, flag: str):
+        """ Wether to apply fixes whenever possible """
+        self.fix = flag
+
+    def __call__(self, files: List[str], args: List[str]) -> bool:
+        """
+            Run the command on the list of files with the given arguments.
+            Return wether it was successful
+        """
+        # Add fix flag if set
+        if self.fix:
+            args.append(self.fix)
+        # Check format for each file
+        for file in files:
+            cmd_args = [self.command, *args, file]
+            if self.verbose:
+                print("running: ", cmd_args)
+            # Run analyze
+            cmd = sp.run(cmd_args, stdout=sp.PIPE, stderr=sp.PIPE)
+            if cmd.returncode != 0:
+                Error(cmd.returncode, "{}: invalid syntax".format(file)).show()
+                if self.verbose:
+                    sys.stderr.write(cmd.stderr.decode('utf-8'))
+                self.sucess = False
+        return self.sucess
+
+
+class FormattingCommand(Command):
     """ Commands responsible for formatting files """
     def __init__(self, command: str, arg_parser: ArgumentParser) -> None:
         super().__init__(command, arg_parser)
         self.fix = None
-        self.sucess = True
         self.diff = False
 
     def __call__(self, files: List[str], args: List[str]) -> bool:

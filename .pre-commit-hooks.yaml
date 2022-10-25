@@ -5,6 +5,19 @@
   entry: hooks/clang-format.py
   types_or: [ c, c++, c#, objective-c, java ]
 -
+  id: apply-clang-tidy
+  name: Apply clang-tidy configuration to source files
+  language: python
+  entry: hooks/clang-tidy.py
+  types_or: [ c, c++, c#, objective-c, java ]
+  args: [ --apply-fixes ]
+-
+  id: check-clang-tidy
+  name: Check that all source files follow the clang-tidy configuration
+  language: python
+  entry: hooks/clang-tidy.py
+  types_or: [ c, c++, c#, objective-c, java ]
+-
   id: apply-clang-format
   name: Apply clang-format configuration to source files
   language: python

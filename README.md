@@ -20,6 +20,7 @@ repos:
     rev: master
     hooks:
       - id: check-clang-format
+      - id: check-clang-tidy
       - id: apply-nixpkgs-fmt
 ```
 
