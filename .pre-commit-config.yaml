@@ -13,3 +13,8 @@ repos:
   rev: "5.0.4"
   hooks:
     - id: flake8
+-
+  repo: "https://github.com/d4ilyrun/pre-commit-hooks"
+  rev: "v1.0.5"
+  hooks:
+    - id: apply-nixpkgs-fmt
