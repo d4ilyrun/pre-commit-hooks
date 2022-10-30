@@ -29,7 +29,7 @@ class ClangTidy(SyntaxAnalyzer):
     def parse_args(self, args: List[str]) -> None:
         super().parse_args(args)
         if self.args.fix:
-            self.apply_fixes('--fix-error')
+            self.apply_fixes('--fix-errors')
         self.set_verbose(self.args.verbose)
 
     def __call__(self) -> bool:
