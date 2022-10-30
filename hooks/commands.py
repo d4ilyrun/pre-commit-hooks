@@ -92,19 +92,21 @@ class FormattingCommand(Command):
             # Save file to compare later
             if self.diff:
                 lines = self.__save_file(file)
+
             # Run formatting
-            cmd = sp.run(cmd_args, stdout=sp.PIPE, stderr=sp.PIPE)
-            # Compare the content before/after
-            if self.diff and cmd.stdout.decode('ascii') != lines:
+            cmd = sp.run(cmd_args, stdout=sp.PIPE, stderr=sp.PIPE, text=True)
+
+            # Compare the content (only if needed AND we didn't fix it already)
+            if self.diff and self.fix is not None and cmd.stdout != lines:
                 cmd.returncode = 1
                 cmd.stderr = '''
                     Output doesn't match the original content of the file\n
-                '''.encode()
+                '''
 
             if cmd.returncode != 0:
                 Error(cmd.returncode, "{}: wrong format".format(file)).show()
                 if self.verbose:
-                    sys.stderr.write(cmd.stderr.decode('utf-8'))
+                    sys.stderr.write(cmd.stderr)
                 self.return_code = cmd.returncode
         return self.return_code
 
