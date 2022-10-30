@@ -5,8 +5,8 @@
   entry: clang-format-hook
   types_or: [ c, c++, c#, objective-c, java ]
 -
-  id: apply-clang-tidy
-  name: Apply clang-tidy configuration to source files
+  id: apply-clang-format
+  name: Apply clang-format configuration to source files
   language: python
   entry: clang-format-hook
   types_or: [ c, c++, c#, objective-c, java ]
@@ -18,8 +18,8 @@
   entry: clang-tidy-hook
   types_or: [ c, c++, c#, objective-c, java ]
 -
-  id: apply-clang-format
-  name: Apply clang-format configuration to source files
+  id: apply-clang-tidy
+  name: Apply clang-tidy configuration to source files
   language: python
   entry: clang-tidy-hook
   types_or: [ c, c++, c#, objective-c, java ]
